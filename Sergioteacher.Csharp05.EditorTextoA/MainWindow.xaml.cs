@@ -26,7 +26,8 @@ namespace Sergioteacher.Csharp05.EditorTextoA
     {
 
         private static String tituloA = "EditorTextoA";
-        private static String fpath;
+        public String fpath;
+        
         bool modificado;
 
         /// <summary>
@@ -38,6 +39,7 @@ namespace Sergioteacher.Csharp05.EditorTextoA
             this.Title = tituloA;
             fpath = "";
             modificado = false;
+            
         }
 
 
@@ -82,6 +84,9 @@ namespace Sergioteacher.Csharp05.EditorTextoA
                         break;
                 }
             }
+
+            e.Cancel = true;
+            Application.Current.Shutdown();
         }
 
 
@@ -210,21 +215,8 @@ namespace Sergioteacher.Csharp05.EditorTextoA
                 }
             }
 
-            OpenFileDialog fichero = new OpenFileDialog();
-            fichero.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-            //fichero.InitialDirectory= @"c:\";
-            fichero.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (fichero.ShowDialog() == true)
-            {
-                Tedit.Text = File.ReadAllText(fichero.FileName);
-                modificado = false;
-                fpath = fichero.FileName;
-                Ventana1.Title = tituloA + " " + fpath;
-            }
-            else
-            {
-                MessageBox.Show(" No se ha selecionado NADA", "Nada de nada", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
+            Window1 dialogo = new Window1(this);
+            dialogo.Show();
         }
 
         /// <summary>

@@ -4,6 +4,19 @@
         <name>Sergioteacher.Csharp05.EditorTextoA</name>
     </assembly>
     <members>
+        <member name="T:Sergioteacher.Csharp05.EditorTextoA.Window1">
+            <summary>
+            Lógica de interacción para Window1.xaml
+            </summary>
+            <summary>
+            Window1
+            </summary>
+        </member>
+        <member name="M:Sergioteacher.Csharp05.EditorTextoA.Window1.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Sergioteacher.Csharp05.EditorTextoA.App">
             <summary>
             Lógica de interacción para App.xaml
