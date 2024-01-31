@@ -5,16 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sergioteacher.Csharp05.EditorTextoA"
         mc:Ignorable="d"
-        Title="WindowInput" Closing="VentanaInput_Closing" Activated="VentanaInput_Activated" Height="200" Width="500" Background="Olive" FontSize="24">
+        Title="WindowInput" Closing="VentanaInput_Closing" Activated="VentanaInput_Activated" Height="291" Width="576" Background="Olive" FontSize="24">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Content="Introduciendo datos ..." Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <TextBox x:Name="MiTexto" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="28" TextWrapping="NoWrap"  Text="" Width="400"/>
-        <Button x:Name="BIntro" Click="BIntro_Click" Content="Ok"  Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" />
+        <Label Content="Introduce la ruta" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <TextBox x:Name="MiTexto" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" TextWrapping="NoWrap"  Text="" Width="400"/>
+        <Button x:Name="BIntro" Click="BIntro_Click" Content="Buscar"  Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" />
+        <Grid Grid.Row="3" HorizontalAlignment="Center">
+            <ComboBox x:Name="ListaArchivos" Height="29" HorizontalAlignment="Right" Width="227" Margin="-57,18,121,18" FontSize="16"/>
+            <Button x:Name="Abrir" Click="Abrir_Click" Content="Abrir"  VerticalAlignment="Center" Width="100" Margin="191.25,0,0,1.076" Height="27.924" FontSize="16" />
+        </Grid>
     </Grid>
 </Window>
 

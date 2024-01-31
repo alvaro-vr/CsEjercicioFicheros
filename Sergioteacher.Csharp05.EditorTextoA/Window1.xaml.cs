@@ -23,26 +23,37 @@ namespace Sergioteacher.Csharp05.EditorTextoA
         MainWindow Inicio;
 
         public bool encontrado = false;
-
+        string rutaArchivo;
         public Window1(MainWindow ventanaInicio)
         {
             Inicio = ventanaInicio;
             InitializeComponent();
+            ListaArchivos.IsEnabled = false;
+            Abrir.IsEnabled = false;
 
         }
 
         private void BIntro_Click(object sender, RoutedEventArgs e)
         {
 
-            encontrado = false;
 
-            string rutaArchivo = MiTexto.Text; // Reemplaza con la ruta de tu archivo
+            rutaArchivo = MiTexto.Text; // Reemplaza con la ruta de tu archivo
             try
             {
 
                 if (File.Exists(rutaArchivo))
                 {
-                    encontrado = true;
+                }else if (Directory.Exists(rutaArchivo))
+                {
+                    ListaArchivos.Items.Clear();
+                    ListaArchivos.IsEnabled = true;
+                    Abrir.IsEnabled = true;
+                    string[] files = Directory.GetFiles(rutaArchivo);
+                    foreach(string file in files)
+                    {
+                        ListaArchivos.Items.Add(file);
+                    }
+                    ListaArchivos.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -51,17 +62,6 @@ namespace Sergioteacher.Csharp05.EditorTextoA
                 Console.WriteLine("Error al acceder al archivo: " + ex.Message);
             }
 
-            if (encontrado)
-            {
-                string contenido = File.ReadAllText(rutaArchivo);
-                Inicio.fpath = rutaArchivo;
-                Inicio.Tedit.Text = contenido;
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("No se ha encontrado el archivo", "Archivo no encontrado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
         }
 
 
@@ -80,6 +80,17 @@ namespace Sergioteacher.Csharp05.EditorTextoA
         private void VentanaInput_Activated(object sender, EventArgs e)
         {
             MiTexto.Text = "";
+        }
+
+        private void Abrir_Click(object sender, RoutedEventArgs e)
+        {
+            
+            rutaArchivo = ListaArchivos.SelectedItem.ToString();
+            string contenido = File.ReadAllText(rutaArchivo);
+            Inicio.fpath = rutaArchivo;
+            Inicio.Tedit.Text = contenido;
+            this.Hide();
+            
         }
     }
 }
